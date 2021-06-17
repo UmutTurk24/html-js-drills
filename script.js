@@ -188,9 +188,12 @@ document.addEventListener('keydown', function(event) {
  *   it is next to.
  */
  let myList = document.querySelector('.form');
-
+ 
+ // callback function
  myList.addEventListener('submit', function(event) {
+  
   event.preventDefault(); // You will want this here. Remove it and see what changes.
+  console.log(event);
   let toDoItem = document.querySelector(`#todo`).value;
   let myTodoList = document.querySelector(`#todos`);
   let newTodo = document.createElement(`li`);
@@ -201,8 +204,6 @@ document.addEventListener('keydown', function(event) {
     let myParent = delButton.parentElement;
     myParent.remove();
   });
-
-  
   newTodo.innerHTML = toDoItem;
   myTodoList.appendChild(newTodo);
   newTodo.appendChild(delButton);
@@ -229,8 +230,20 @@ document.addEventListener('keydown', function(event) {
  *   - https://javascript.info/settimeout-setinterval
  *
  */
+// let timerId = setInterval(() => alert('tick'), 1000);
+var counter = 0;
+var timerFunction = setInterval(myTimer, 1000);
 
-// Your code goes here
+function myTimer(){
+  counter++;
+  document.querySelector(`#seconds`).innerHTML = counter;
+}
+
+setTimeout(function(){
+  document.querySelector(`#delayedDisplay`).innerHTML = "HELLO FROM THE OTHER SIIDEEEEEEEEEEEE";
+},5000);
+
+
 
 /****************************************
  * Section 6 - Your own section!        *
