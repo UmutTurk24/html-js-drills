@@ -124,6 +124,7 @@
         </ul>
       </div>
     </div>
+
     <div class="container">
       <div>
         <div class="title">SetTimeout Vs Set Interval</div>
@@ -132,6 +133,21 @@
       <div>
         Here's my delayed display:<div id="delayedDisplay"></div>
       </div>
+    </div>
+
+    <div class="container">
+      <div>
+        <div class="title">Drag Event Test</div>
+        You can drag the drag show contestant between different drag show stages <span id="seconds"></span>
+      </div>
+      <div></div>
+      <div class="dropzone">
+        <div id="draggable" draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)">
+          
+        </div>
+      </div>
+      <div class="dropzone"></div>
+      
     </div>
   </main>
 
