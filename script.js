@@ -22,11 +22,18 @@ function addName() {
   // - https://www.w3schools.com/jsref/prop_node_innertext.asp
 
   let nameElement = document.querySelector('#name');
-  nameElement.innerText = 'See script.js!';
+  nameElement.innerText = "I am evil";
 }
 
 function addFavoriteThings() {
   console.log('Called addFavoriteThings()');
+  let toplist = document.querySelector('#favthings');
+  var hobbies = ["Drinking", "Playing Games", "Chilling with Friends", "Binge-Watching"];
+  for (let hobby of hobbies){
+    let var_hob = document.createElement('li');
+    var_hob.innerHTML=hobby;
+    toplist.appendChild(var_hob);
+  }
 
   // 1. Get a reference to <ul id="favthings">
   // 2. Create a few list items representing your favorite things
@@ -40,7 +47,8 @@ function addFavoriteThings() {
 
 function replaceImage() {
   console.log('Called replaceImage()');
-
+  let dogpic = document.querySelector('#picture');
+  dogpic.setAttribute("src","https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif")
   // Change the puppy picture to a picture of your choosing
 
   // See:
@@ -50,6 +58,13 @@ function replaceImage() {
 
 function changeCodeStatus() {
   console.log('Called changeCodeStatus()');
+  let varStatus = document.querySelector("#codestatus");
+  let newImg = document.createElement('img');
+  varStatus.innerHTML = ``
+  newImg.setAttribute("src","https://www.meme-arsenal.com/memes/4e5a84ee029f4d2316cb7d06c5a9ed07.jpg");
+  newImg.setAttribute("style", "height: 200px");
+  varStatus.appendChild(newImg);
+  // varStatus.innerHTML = `<img src="https://www.meme-arsenal.com/memes/4e5a84ee029f4d2316cb7d06c5a9ed07.jpg" alt = "Cute Pic">`;
 
   // 1. Get a reference to <div id="codestatus">
   // 2. Create image element containing a sweet ol' meme
@@ -59,7 +74,7 @@ function changeCodeStatus() {
 // Get a reference to the button w/ id="show-info-button"
 let showInfoButton = document.querySelector('#show-info-button');
 
-// Do something when showInfoButton is clicke
+// Do something when showInfoButton is clicked
 showInfoButton.addEventListener('click', function() {
   console.log('Clicked "Show Info" button');
 
@@ -87,8 +102,23 @@ let informationForm = document.querySelector('#information-form');
 // Do something when form is submitted
 informationForm.addEventListener('submit', function(event) {
   event.preventDefault(); // You will want this here. Remove it and see what changes.
+  let name = informationForm.elements[0].value;
+  let lname = informationForm.elements[1].value;
+  let car = informationForm.elements[2].value;
+  let icecream = informationForm.elements[3].value;
+  // let typehuman = informationForm.elements[4].value;
+  document.querySelector(`#firstname`).innerHTML = name;
+  document.querySelector(`#lastname`).innerHTML = lname;
+  document.querySelector(`#chosencar`).innerHTML = car;
+  document.querySelector(`#icecreamstatus`).innerHTML = icecream;
+  // document.querySelector(`#checks`).innerHTML = typehuman;
 
   console.log('Form submitted');
+
+  let humanCheck = document.querySelector("#humancheck").checked;
+  let coderCheck = document.querySelector("#codercheck").checked;
+
+  document.querySelector(`#checks`).innerHTML = `${humanCheck} ${coderCheck}`;
 
   // Your job:
   //   1. Get information typed into the form
@@ -111,15 +141,17 @@ informationForm.addEventListener('submit', function(event) {
 // then log something to the console
 
 // Fill in ________ to get a reference to the correct button on the page
-let consoleLogButton = document.querySelector('#________');
+let consoleLogButton = document.querySelector('#console-log-button');
 
 // Log something when that button is clicked
 consoleLogButton.addEventListener('click', function() {
-  console.log('Change this text if you want!');
+  console.log('Sam Smith is awesome');
 });
 
-let makeBlueButton = document.querySelector('#________');
+let makeBlueButton = document.querySelector('#make-blue-button');
 makeBlueButton.addEventListener('click', function() {
+  let colorfulText = document.querySelector(`#colorText`);
+  colorfulText.setAttribute("style","color: blue");
   // Your job:
   //  1. When a user clicks "Change the text to the right blue"
   //  2. Change the text in <div id="colorText">...</div> to blue
@@ -127,9 +159,11 @@ makeBlueButton.addEventListener('click', function() {
 
 // Adding an event listener to document means the "keydown" event
 // can happen anywhere on the page and we'll respond.
-document.addeventListener('keydown', function() {
+document.addEventListener('keydown', function(event) {
+  if(event.code == "KeyR"){
+    document.querySelector(`#colorText`).style.color = "brown";
+  }
   // This is called whenever a user pressed any key.
-
   // Your job:
   //  1. Turn colorText red whenever a user presses the 'r' key
   //  2. Add your own keybind somewhere
@@ -153,8 +187,31 @@ document.addeventListener('keydown', function() {
  *   Add a delete button next to each item and allow it to delete the item
  *   it is next to.
  */
+ let myList = document.querySelector('.form');
 
-// Your code goes here
+ myList.addEventListener('submit', function(event) {
+  event.preventDefault(); // You will want this here. Remove it and see what changes.
+  let toDoItem = document.querySelector(`#todo`).value;
+  let myTodoList = document.querySelector(`#todos`);
+  let newTodo = document.createElement(`li`);
+  let delButton = document.createElement(`button`);
+  delButton.setAttribute("style", "height: 30; width: 10;");
+
+  delButton.addEventListener('click', function() {
+    let myParent = delButton.parentElement;
+    myParent.remove();
+  });
+
+  
+  newTodo.innerHTML = toDoItem;
+  myTodoList.appendChild(newTodo);
+  newTodo.appendChild(delButton);
+
+});
+
+
+
+
 
 /****************************************
  * Section 5 - setInterval + setTimeout *
